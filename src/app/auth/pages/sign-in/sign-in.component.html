@@ -1,0 +1,40 @@
+<main class="main-container" fxLayout="row wrap" fxLayoutAlign="center center">
+  <section fxLayout="row wrap" fxFlex.xs="80" fxFlex.sm="50" fxFlex.md="40" fxFlex.gt-md="30">
+    <div fxFlex="100" fxLayoutAlign="center">
+      <div>
+        <img src="assets/images/logo.png" alt="Logo everis">
+      </div>
+      <!-- <h1 class="mat-display-4 app-title">everis</h1> -->
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" fxFlex="100" fxLayout="row wrap">
+      <div fxFlex="100">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" autocomplete="email">
+        </mat-form-field>
+      </div>
+      <div fxFlex="100">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input #pw matInput formControlName="password" type="password" placeholder="Password"
+            autocomplete="current-password">
+          <app-toggle-password-button [input]="pw" matSuffix></app-toggle-password-button>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxLayoutAlign="center center">
+        <button mat-button class="sign-in-button" type="submit" [disabled]="!form?.valid">
+          <div class="sign-in-content-wrapper" fxLayoutAlign="space-around center">
+            <span>Sign in</span>
+            <mat-spinner *ngIf="isLoading" [diameter]="24" color="accent"></mat-spinner>
+          </div>
+        </button>
+      </div>
+    </form>
+
+  </section>
+</main>
+
+<div class="wave-container">
+  <img class="wave-img" src="assets/images/waves/sign-in-wave.svg" />
+</div>

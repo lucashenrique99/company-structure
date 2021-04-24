@@ -1,0 +1,77 @@
+@import 'colors';
+
+$minHeight: 32px !important;
+
+.success.mat-chip.mat-standard-chip{
+    background-color: $success !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.warning.mat-chip.mat-standard-chip{
+    background-color: $warning !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.danger.mat-chip.mat-standard-chip{
+    background-color: $danger !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.primary.mat-chip.mat-standard-chip{
+    background-color: $primary !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.secondary.mat-chip.mat-standard-chip{
+    background-color: $secondary !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.none.mat-chip.mat-standard-chip{
+    background-color: transparent !important;
+    color: transparent !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.gray.mat-chip.mat-standard-chip{
+    background-color: $gray !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.orange.mat-chip.mat-standard-chip{
+    background-color: $orange !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.blue.mat-chip.mat-standard-chip{
+    background-color: $blue !important;
+    color: $white !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.teal.mat-chip.mat-standard-chip{
+    background-color: $teal !important;
+    min-height: $minHeight;
+    height: auto !important;
+}
+
+.cyan.mat-chip.mat-standard-chip{
+    background-color: $cyan !important;
+    min-height: $minHeight;
+    height: auto !important;
+}

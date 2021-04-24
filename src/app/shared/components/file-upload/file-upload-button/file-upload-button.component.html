@@ -1,0 +1,7 @@
+<input type="file" hidden accept="image/*" #upload (change)="onChangeUpload($event)">
+<button mat-icon-button (click)="onClickUpload()">
+  <mat-icon *ngIf="!isLoadingUpload">cloud_upload</mat-icon>
+  <div *ngIf="isLoadingUpload" fxLayout="row" fxLayoutAlign="center">
+    <mat-spinner [mode]="'indeterminate'" [diameter]="30"></mat-spinner>
+  </div>
+</button>

@@ -1,0 +1,19 @@
+<div class="grid-container">
+    <div fxLayout="row wrap">
+        <div fxFlex fxLayout="column">
+            <h2 class="mat-headline page-title">{{title}}</h2>
+        </div>
+        <div *ngIf="showNewButton && !disabledNewButton()" fxFlex="250px" class="new-button-container" fxFlex.xs="100">
+            <a mat-raised-button [routerLink]="newButton.url" color="primary">
+                <mat-icon>add</mat-icon>
+                {{newButton.label}}
+            </a>
+
+        </div>
+    </div>
+    <div fxLayout="row">
+        <div fxFlex="100" fxLayout="column">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

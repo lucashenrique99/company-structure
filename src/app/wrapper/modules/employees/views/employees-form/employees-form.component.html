@@ -1,0 +1,98 @@
+<app-form [title]="title" (onSave)="onSave()" [disableButton]="isInvalidForm() || isLoadingRequest" [form]="form"
+  [showSpinner]="isLoadingRequest">
+  <div form>
+    <div class="form-container">
+      <div>
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome" [formControl]="getField('name')" required>
+          <mat-error *ngIf="hasError('name', 'required')">Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" placeholder="Email" [formControl]="getField('email')" required>
+          <mat-error *ngIf="hasError('email', 'required')">Email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="hasError('email', 'email')">Email é inválido
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>CPF</mat-label>
+          <input matInput mask="000.000.000-00" [formControl]="getField('cpf')" required>
+          <mat-error *ngIf="hasError('cpf', 'required')">CPF é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>RG</mat-label>
+          <input matInput placeholder="RG" [formControl]="getField('rg')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Celular</mat-label>
+          <input matInput mask="(00) 0000-0000||(00) 0 0000-0000" [formControl]="getField('phone')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="getField('birthDate')">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Cargo</mat-label>
+          <input matInput placeholder="Cargo" [formControl]="getField('jobRole')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Tecnologia</mat-label>
+          <input matInput placeholder="Tecnologia" [formControl]="getField('techStack')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Registro GECO</mat-label>
+          <input matInput placeholder="Registro GECO" [formControl]="getField('registrationGECO')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Número Mac</mat-label>
+          <input matInput placeholder="Número Mac" [formControl]="getField('macNumber')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Funcional</mat-label>
+          <input matInput placeholder="Funcional" [formControl]="getField('functional')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>RACF</mat-label>
+          <input matInput placeholder="RACF" [formControl]="getField('racf')">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Telefone Corporativo</mat-label>
+          <input matInput mask="(00) 0000-0000||(00) 0 0000-0000" [formControl]="getField('corporatePhone')">
+        </mat-form-field>
+      </div>
+
+
+    </div>
+  </div>
+
+</app-form>

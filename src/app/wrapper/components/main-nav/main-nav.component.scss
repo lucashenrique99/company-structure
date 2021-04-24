@@ -1,0 +1,116 @@
+@import '~@angular/material/theming';
+@import 'src/assets/_scss/colors';
+@import 'src/assets/_scss/fonts';
+
+.sidenav-container {
+  height: 100%;
+
+  .sidenav {
+    width: 300px;
+    max-width: 80vw;
+  }
+
+  .sidenav-header {
+    display: flex !important;
+    padding: 15px !important;
+    justify-content: center !important;
+    height: 128px !important;
+    flex-direction: column !important;
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    @media (max-width: 599px) {
+      padding: 10px !important;
+      height: 108px !important;
+    }
+
+    .current-user {
+      margin-top: 16px;
+      text-align: center;
+    }
+  }
+
+  .menu-navbar {
+
+    .mat-navbar-icon-button {
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .mat-expansion-panel-header {
+      padding: 8px 16px !important;
+      color: #424242;
+      
+      &:hover {
+        color: mat-color($md-primary, 500);
+      }
+    }
+
+    .mat-expansion-panel-header .mat-content {
+      align-items: center !important;
+    }
+
+    .mat-expansion-panel-body {
+      padding: 0 !important;
+    }
+
+    .mat-list-item {
+      color: #424242;
+      padding: 8px 0;
+
+      &:hover {
+        color: mat-color($md-primary, 500);
+      }
+    }
+
+    .active-menu {
+      color: mat-color($md-primary, 500);
+    }
+  }
+
+  .mat-expansion-panel-body .mat-list-item-content {
+    padding-left: 30px !important;
+  }
+
+  .menu-item-label {
+    padding-left: 15px !important;
+  }
+
+  .version-label .mat-list-item-content {
+    color: #9E9E9E;
+    justify-content: center;
+  }
+
+}
+
+.app-name {
+  // max-height: 56px;
+  text-align: center;
+  img{
+    max-width: 150px;
+  }
+}
+
+.mat-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-drawer {
+  min-width: max-content !important;
+}
+
+.mat-drawer-content{
+  background-color: #F2F4F6;
+  padding: 0 1rem;
+
+  @media(max-width: 768px) {
+    padding: 0 8px;
+  }
+}
+
+.header-navbar {
+  // background: $white !important;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+  <div *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center">
+    <mat-spinner [mode]="'indeterminate'"></mat-spinner>
+  </div>
+  <div *ngIf="!isLoading" fxLayout="row wrap">
+    <ng-template ngFor let-row [ngForOf]="rows">
+      <div *ngIf="data" fxFlex="100" [fxFlex.gt-xs]="row.width">
+        <span class="information-label">{{row.label}}:</span>
+        <span
+          *ngIf="!row.hasHighlight">{{ row.field(data) | dynamic: row.pipe : row.pipeArgs ? row.pipeArgs(data) : [] }}</span>
+        <mat-chip-list *ngIf="row.hasHighlight" [selectable]="false">
+          <mat-chip [selectable]="false" [ngClass]="row.highlightClass? row.highlightClass(data) : []">
+            {{row.field(data)  | dynamic: row.pipe : row.pipeArgs ? row.pipeArgs(data) : [] }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <mat-divider *ngIf="row.showDivider" fxFlex="100"></mat-divider>
+    </ng-template>
+    <ng-content select="[content]">
+    </ng-content>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button *ngIf="showCancelLabel" mat-button mat-dialog-close>
+    <mat-icon fontSet="fas" fontIcon="fa-undo" [inline]="true"></mat-icon>
+    {{cancelLabel}}
+  </button>
+  <button *ngIf="showConfirmLabel" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    <mat-icon fontSet="fas" fontIcon="fa-check" [inline]="true"></mat-icon>
+    {{confirmLabel}}
+  </button>
+  <ng-content select="[actions]">
+  </ng-content>
+</mat-dialog-actions>

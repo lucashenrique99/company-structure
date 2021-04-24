@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input type="text" [placeholder]="placeholder" aria-label="Autocomplete" matInput [formControl]="formControl"
+    [matAutocomplete]="auto" [required]="required" #input (input)="onKeyDownInput(input.value)"
+    (focusout)="onInputFocusOut()">
+  <mat-autocomplete (optionSelected)="onSelected($event.option.value)" #auto="matAutocomplete"
+    [displayWith]="displayLabelWith" [panelWidth]="autoWidth ? 'auto' : null">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option.label}}
+      <small *ngIf="option.description" class="mat-option-description">{{option.description}}</small>
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="hasError('required')">{{errorMessage}}
+  </mat-error>
+</mat-form-field>

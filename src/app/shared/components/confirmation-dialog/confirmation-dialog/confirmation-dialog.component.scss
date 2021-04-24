@@ -1,0 +1,24 @@
+@import 'src/assets/_scss/colors';
+
+.warning-confirm-button {
+  color: $white;
+  background-color: $warning !important;
+}
+
+.danger-confirm-button {
+  color: $white;
+  background-color: $danger !important;
+}
+
+.warning-icon {
+  color: $warning !important;
+}
+
+.danger-icon {
+  color: $danger !important;
+}
+
+.message-container {
+  white-space: pre-line;
+  word-break: break-all;
+}

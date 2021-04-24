@@ -1,0 +1,12 @@
+<mat-toolbar class="max-width-container">
+    <ng-template ngFor let-item [ngForOf]="breadcrumbs" let-last="last">
+        <ng-template [ngIf]="!last">
+            <a mat-button [routerLink]="item.url">{{item.label}}</a>
+            <span>></span>
+        </ng-template>
+        <ng-template [ngIf]="last">
+            <span class="mat-body-1 last-item">{{item.label}}</span>
+        </ng-template>
+    </ng-template>
+</mat-toolbar>
+<mat-progress-bar *ngIf="isLoading" mode="query" class="max-width-container"></mat-progress-bar>

@@ -1,0 +1,89 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+    <div class="sidenav-header">
+      <div class="app-name">
+        <img src="assets/images/logo.png" alt="Logo everis">
+      </div>
+      <span class="current-user">{{currentUser}}</span>
+    </div>
+
+    <mat-nav-list class="menu-navbar">
+
+      <ng-template ngFor let-menu [ngForOf]="menus">
+
+        <ng-template [ngIf]="!menu.children">
+          <a mat-list-item [routerLink]="menu.url" [ngClass]="rla.isActive && menu.url ? ['active-menu'] : []" routerLinkActive
+            #rla="routerLinkActive">
+            <mat-icon class="mat-navbar-icon-button" *ngIf="menu.icon" [fontSet]="menu.fontSet" [fontIcon]="menu.icon">
+            </mat-icon>
+            <mat-icon class="mat-navbar-icon-button" *ngIf="menu.svgIcon" [fontSet]="menu.fontSet">
+              {{menu.svgIcon}}
+            </mat-icon>
+            <span class="menu-item-label">{{menu.label}}</span>
+          </a>
+        </ng-template>
+
+        <ng-template [ngIf]="menu.children">
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header [routerLink]="menu.url" [ngClass]="rla.isActive && menu.url ? ['active-menu'] : []"
+              routerLinkActive #rla="routerLinkActive">
+              <mat-icon class="mat-navbar-icon-button" *ngIf="menu.icon" [fontSet]="menu.fontSet"
+                [fontIcon]="menu.icon">
+              </mat-icon>
+              <mat-icon class="mat-navbar-icon-button" *ngIf="menu.svgIcon" [fontSet]="menu.fontSet">
+                {{menu.svgIcon}}
+              </mat-icon>
+              <span class="menu-item-label">{{menu.label}}</span>
+            </mat-expansion-panel-header>
+
+            <ng-template matExpansionPanelContent>
+
+              <ng-template ngFor let-submenu [ngForOf]="menu.children">
+                <a mat-list-item [routerLink]="submenu.url" [ngClass]="rla.isActive && submenu.url ? ['active-menu'] : []"
+                  routerLinkActive #rla="routerLinkActive">
+                  <mat-icon class="mat-navbar-icon-button" *ngIf="submenu.icon" [fontSet]="submenu.fontSet"
+                    [fontIcon]="submenu.icon">
+                  </mat-icon>
+                  <mat-icon class="mat-navbar-icon-button" *ngIf="submenu.svgIcon" [fontSet]="submenu.fontSet">
+                    {{submenu.svgIcon}}
+                  </mat-icon>
+                  <span class="menu-item-label">{{submenu.label}}</span>
+                </a>
+              </ng-template>
+
+            </ng-template>
+          </mat-expansion-panel>
+        </ng-template>
+
+      </ng-template>
+
+      <mat-list-item class="version-label">
+        v{{versionApp}}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="header-navbar">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="mat-toolbar-spacer"></span>
+
+
+      <button mat-icon-button (click)="logoutHandler(drawer)" title="Logout">
+        <mat-icon fontSet="material-icons-outlined" class="mat-navbar-icon-button">exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <main class="max-width-container">
+      <app-breadcrumb></app-breadcrumb>
+      <router-outlet></router-outlet>
+    </main>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+    <div fxLayout="row">
+        <div fxFlex="10" fxLayoutAlign="center center">
+            <mat-icon *ngIf="confirmMode === 'warning'" class="warning-icon">warning</mat-icon>
+            <mat-icon *ngIf="confirmMode === 'danger'" class="danger-icon">error</mat-icon>
+        </div>
+        <div fxFlex class="message-container">
+            {{message}}
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-raised-button [ngClass]="confirmMode === 'warning' ? 'warning-confirm-button' : 'danger-confirm-button'"
+        [mat-dialog-close]="confirmData">Confirm</button>
+</mat-dialog-actions>

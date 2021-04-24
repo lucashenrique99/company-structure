@@ -1,0 +1,25 @@
+.horizontal-radio-group .mat-radio-button {
+    &:first-child{
+        margin-left: 0 !important;
+    }
+    margin-left: 16px !important;
+}
+
+.radiobutton-label{
+    margin-bottom: 5px !important;
+}
+
+.vertical-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+  
+.vertical-radio-group .vertical-radio-button {
+    margin: 5px;
+}
+
+.options-container{
+    padding-bottom: 1.34375em;
+    margin: 0 0 .25em;
+}

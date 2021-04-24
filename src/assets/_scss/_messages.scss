@@ -1,0 +1,76 @@
+@import 'colors';
+
+.success-message {
+  background: $success !important;
+  color: white !important;
+}
+
+.error-message {
+  background: $danger !important;
+  color: white !important;
+}
+
+.warning-message {
+  background: $warning !important;
+  color: white !important;
+}
+
+.primary-message {
+  background: $primary !important;
+  color: white !important;
+}
+
+.mat-simple-snackbar-action {
+  color: $dark !important;
+}
+
+.primary-message .mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.new-request-message {
+  background: $secondary !important;
+  color: white;
+  text-align: center;
+}
+
+.new-request-message .mat-simple-snackbar {
+  padding: .5em !important;
+}
+
+.success-label.mat-icon-button {
+  color: $success;
+}
+
+.secondary-label.mat-icon-button {
+  color: $secondary;
+}
+
+.teal-label.mat-icon-button {
+  color: $teal;
+}
+
+.warning-label.mat-icon-button {
+  color: $warning;
+}
+
+.primary-label.mat-icon-button {
+  color: $primary;
+}
+
+.dark-red-label.mat-icon-button {
+  color: $dark-red;
+}
+
+.orange-label.mat-icon-button {
+  color: $orange;
+}
+
+.danger-label.mat-icon-button {
+  color: $danger;
+
+}
+
+.strong-font-message {
+  font-weight: 600 !important;
+}

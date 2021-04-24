@@ -1,0 +1,52 @@
+@import '@angular/material/theming';
+@import 'src/assets/_scss/colors';
+@import 'src/assets/_scss/fonts';
+
+.main-container {
+  height: 100vh;
+  width: 100vw;
+
+  section {
+    z-index: 10;
+  }
+
+  .app-title {
+    text-align: center;
+    font-family: $font-family-logo;
+  }
+
+  .sign-in-button {
+    width: 100%;
+    max-width: 300px;
+    color: $white;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 24px;
+    background: linear-gradient(90deg, mat-color($md-primary, 300), mat-color($md-primary, 600));
+    transition: all .2s ease-in-out;
+
+    &:disabled{
+        filter: grayscale(1);
+    }
+
+    .sign-in-content-wrapper{
+        transition: all .2s ease-in-out;
+        padding: 8px;
+        font-size: 16px;
+    }
+  }
+}
+
+.wave-container {
+  position: absolute;
+  top: 0%;
+  height: 50vh;
+  width: 100%;
+
+  .wave-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+  }
+}

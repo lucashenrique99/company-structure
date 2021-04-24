@@ -1,0 +1,37 @@
+<ng-template ngFor let-buttonData [ngForOf]="plainButtons" [ngForTrackBy]="ngForTrackByButton">
+  <a *ngIf="buttonData.isLink" [disabled]="buttonData.disabled && buttonData.disabled(data)"
+    [ngClass]="buttonData.class" [routerLink]="buttonData.link(data)"
+    [queryParams]="buttonData.linkParams ? buttonData.linkParams(data) : null" mat-icon-button
+    [attr.title]="buttonData.label">
+    <mat-icon *ngIf="buttonData.icon" [fontSet]="buttonData.fontSet" [fontIcon]="buttonData.icon"></mat-icon>
+    <mat-icon *ngIf="buttonData.svgIcon" [fontSet]="buttonData.fontSet">{{buttonData.svgIcon}}</mat-icon>
+  </a>
+  <button *ngIf="!buttonData.isLink" [disabled]="buttonData.disabled && buttonData.disabled(data)" type="button"
+    [ngClass]="buttonData.class" (click)="onClick(buttonData.id)" mat-icon-button [attr.title]="buttonData.label">
+    <mat-icon *ngIf="buttonData.icon" [fontSet]="buttonData.fontSet" [fontIcon]="buttonData.icon"></mat-icon>
+    <mat-icon *ngIf="buttonData.svgIcon" [fontSet]="buttonData.fontSet">{{buttonData.svgIcon}}</mat-icon>
+  </button>
+</ng-template>
+
+<button *ngIf="menuButtons.length" mat-icon-button [matMenuTriggerFor]="moreOptions" title="Mais Opções"
+  aria-label="Mais Opções">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #moreOptions="matMenu" class="table-button-menu">
+  <ng-template ngFor let-buttonData [ngForOf]="menuButtons" [ngForTrackBy]="ngForTrackByButton">
+    <a *ngIf="buttonData.isLink" [disabled]="buttonData.disabled && buttonData.disabled(data)"
+      [routerLink]="buttonData.link(data)" [queryParams]="buttonData.linkParams ? buttonData.linkParams(data) : null"
+      mat-menu-item>
+      <mat-icon *ngIf="buttonData.icon" [fontSet]="buttonData.fontSet" [fontIcon]="buttonData.icon"></mat-icon>
+      <mat-icon *ngIf="buttonData.svgIcon" [fontSet]="buttonData.fontSet">{{buttonData.svgIcon}}</mat-icon>
+      <span>{{buttonData.label}}</span>
+    </a>
+    <button *ngIf="!buttonData.isLink" [disabled]="buttonData.disabled && buttonData.disabled(data)" type="button"
+      (click)="onClick(buttonData.id)" mat-menu-item>
+      <mat-icon *ngIf="buttonData.icon" [fontSet]="buttonData.fontSet" [fontIcon]="buttonData.icon"></mat-icon>
+      <mat-icon *ngIf="buttonData.svgIcon" [fontSet]="buttonData.fontSet">{{buttonData.svgIcon}}</mat-icon>
+      <span>{{buttonData.label}}</span>
+    </button>
+  </ng-template>
+
+</mat-menu>

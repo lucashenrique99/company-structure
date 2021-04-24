@@ -1,0 +1,70 @@
+.full-width-table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.responsive-table .mat-row td {
+  padding-top: 1.5em !important;
+  padding-bottom: 1.5em !important;
+}
+
+.responsive-table .mat-row {
+  word-wrap: break-word;
+  word-break: break-all;
+
+  &:nth-child(even) {
+    background: rgba(0, 0, 0, .05);
+  }
+}
+
+.responsive-table .responsive-title {
+  font-weight: bold;
+}
+
+.advanced-filters-card {
+  margin-bottom: 15px !important;
+}
+
+.expanded-table .mat-row{
+  &:hover{
+    background: rgba(0, 0, 0, .05);
+  }
+}
+
+.expanded-table td.mat-cell,
+.expanded-table th.mat-header-cell {
+  padding-left: .4em;
+  padding-right: .4em;
+}
+
+.expanded-table td.mat-cell:first-of-type,
+.expanded-table th.mat-header-cell:first-of-type {
+  padding-left: 24px !important;
+}
+
+.expanded-table td.mat-cell:last-of-type,
+.expanded-table th.mat-header-cell:last-of-type {
+  padding-right: 24px !important;
+}
+
+.overflow-table {
+  overflow-x: auto;
+}
+
+// .column-options-row{
+//   margin-top: 7px;
+// }
+
+.advanced-filter-row {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  margin-right: initial !important;
+
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  padding: 10px;
+}

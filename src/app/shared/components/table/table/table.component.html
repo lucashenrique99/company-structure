@@ -1,0 +1,219 @@
+<app-chips *ngIf="showFilter" (onChange)="onChangeChipFilter($event)" [placeholder]="placeholder">
+</app-chips>
+
+<!-- advanced filters -->
+<mat-card *ngIf="showAdvancedFilter" class="advanced-filters-card">
+
+  <div fxLayout="column">
+    <div style="padding-bottom: 15px;" fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex="100">
+        <h3 class="mat-h3">Filter by:</h3>
+      </div>
+      <ng-template ngFor let-control [ngForOf]="advancedFilters?.controls">
+        <div fxFlex>
+          <mat-checkbox [formControl]="control.get('selected')">{{control.value.column.header}}</mat-checkbox>
+        </div>
+      </ng-template>
+    </div>
+    <ng-template ngFor let-control [ngForOf]="advancedFilters?.controls">
+      <div fxLayout="row" *ngIf="showAdvancedColumn(control, 'text')">
+        <div fxFlex="100" class="advanced-filter-row">
+          <app-chips-autocomplete #textChips [placeholder]="getAdvancedColumnLabel(control,'text')"
+            [control]="control.get('filters.text')" [options]="getColumnOptions(control)">
+          </app-chips-autocomplete>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="100" class="advanced-filter-row" *ngIf="showAdvancedColumn(control, 'status')">
+          <app-chips #statusesChips [control]="control.get('filters.status')" [placeholder]="'Status'">
+          </app-chips>
+          <div class="column-options-row">
+            <mat-chip-list *ngIf="showColumnOptions(control)" aria-label="Statuses selection">
+              <mat-chip *ngFor="let option of getColumnOptions(control)"
+                (click)="onClickColumnOption(option, statusesChips)">{{option}}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="15px grid" class="advanced-filter-row"
+        *ngIf="showAdvancedColumn(control, 'initDate')">
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control,'initDate')}}</mat-label>
+            <input matInput [matDatepicker]="initPicker" placeholder="Initial"
+              [formControl]="control.get('filters.initDate')">
+            <mat-datepicker-toggle matSuffix [for]="initPicker"></mat-datepicker-toggle>
+            <mat-datepicker #initPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control,'finalDate')}}</mat-label>
+            <input matInput [matDatepicker]="finalPicker" placeholder="Final"
+              [formControl]="control.get('filters.finalDate')">
+            <mat-datepicker-toggle matSuffix [for]="finalPicker"></mat-datepicker-toggle>
+            <mat-datepicker #finalPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="15px grid" class="advanced-filter-row"
+        *ngIf="showAdvancedColumn(control, 'initNum')">
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control, 'initNum')}}</mat-label>
+            <input matInput placeholder="Initial Value" [formControl]="control.get('filters.initNum')">
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control, 'finalNum')}}</mat-label>
+            <input matInput placeholder="Final Value" [formControl]="control.get('filters.finalNum')">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="15px grid" class="advanced-filter-row"
+        *ngIf="showAdvancedColumn(control, 'initCur')">
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control,'initCur')}}</mat-label>
+            <input matInput placeholder="Initial Value ($)" currencyMask
+              [formControl]="control.get('filters.initCur')">
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-xs="calc(50% - 10px)">
+          <mat-form-field>
+            <mat-label>{{getAdvancedColumnLabel(control, 'finalCur')}}</mat-label>
+            <input matInput placeholder="Final Value ($)" currencyMask [formControl]="control.get('filters.finalCur')">
+          </mat-form-field>
+        </div>
+      </div>
+    </ng-template>
+
+  </div>
+</mat-card>
+
+<!-- expand table -->
+<div [ngClass]=" flatTable ? ['overflow-table'] : ['mat-elevation-z8','overflow-table']">
+  <table *ngIf="isExpanded$ | async" mat-table class="full-width-table expanded-table" aria-label="Elements"
+    [dataSource]="dataSource" matSort (matSortChange)="onSort($event)">
+
+    <ng-template ngFor let-item [ngForOf]="columns" [ngForTrackBy]="ngForTrackByColumns">
+      <ng-container [matColumnDef]="item.name">
+        <ng-template [ngIf]="item.sort">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header [matTooltip]="item.description ? item.description : ''">
+            {{item.header}}</th>
+        </ng-template>
+        <ng-template [ngIf]="!item.sort">
+          <th mat-header-cell *matHeaderCellDef>{{item.header}}</th>
+        </ng-template>
+        <td mat-cell *matCellDef="let row" [ngClass]="item.class? item.class(row) : []"
+          [matTooltip]="item.description ? item.description : ''">
+          <span *ngIf="!item.hasHighlight">
+            {{item.field(row)  | dynamic: item.pipe : item.pipeArgs ? item.pipeArgs(row) : [] }}
+          </span>
+          <mat-chip-list *ngIf="item.hasHighlight" [selectable]="false">
+            <mat-chip [selectable]="false" [ngClass]="item.highlightClass? item.highlightClass(row) : []">
+              {{item.field(row)  | dynamic: item.pipe : item.pipeArgs ? item.pipeArgs(row) : [] }}
+            </mat-chip>
+          </mat-chip-list>
+        </td>
+      </ng-container>
+    </ng-template>
+
+    <ng-container matColumnDef="buttons">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <app-table-button [plainButtons]="plainButtons" [data]="row" [buttons]="tableButtons"
+          (onClick)="onTableButtonClick($event)"></app-table-button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="footer">
+      <td mat-footer-cell *matFooterCellDef [attr.colspan]="columns.length">
+        {{emptyMessage}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="header">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="displayedColumns.length">
+        <h3 class="text-center">{{title}}</h3>
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="loading">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="displayedColumns.length">
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </th>
+    </ng-container>
+
+    <tr mat-footer-row *matFooterRowDef="['footer']"
+      [ngStyle]="!dataSource?.displayedData?.length ? {'display': 'table-row'} : {'display': 'none'}"></tr>
+    <tr mat-header-row *matHeaderRowDef="['header']"
+      [ngStyle]="showExpandedTitle ? {'display': 'table-row'} : {'display': 'none'}"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="['loading']"
+      [ngStyle]="isLoading ? {'display': 'table-row'} : {'display': 'none'}"></tr>
+  </table>
+
+  <!-- responsive table -->
+  <table *ngIf="!(isExpanded$ | async)" [dataSource]="dataSource" mat-table class="full-width-table responsive-table"
+    aria-label="Elements">
+
+    <ng-container matColumnDef="column">
+      <th mat-header-cell *matHeaderCellDef>
+        <div fxLayout="column">
+          <h3 class="text-center">{{title}}</h3>
+          <div *ngIf="isLoading" fxFlex="100">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let row; let index=index">
+        <div fxLayout="row wrap" fxLayoutGap="15px grid">
+          <ng-template ngFor let-item [ngForOf]="columns" [ngForTrackBy]="ngForTrackByColumns">
+            <div fxFlex="100" fxLayout="column">
+              <div fxLayout="row wrap" fxLayoutGap="5px grid">
+                <div fxFlex="40" fxFlex.gt-xs="calc(25% - 5px)" fxLayout="column" class="responsive-title"
+                  [matTooltip]="item.description ? item.description : ''">
+                  {{item.header}}:
+                </div>
+                <div fxFlex="60" fxFlex.gt-xs="calc(75% - 5px)" fxLayout="column"
+                  [ngClass]="item.class? item.class(row) : []" [matTooltip]="item.description ? item.description : ''">
+                  <span *ngIf="!item.hasHighlight">
+                    {{item.field(row)  | dynamic: item.pipe : item.pipeArgs ? item.pipeArgs(row) : [] }}
+                  </span>
+                  <mat-chip-list *ngIf="item.hasHighlight" [selectable]="false">
+                    <mat-chip [selectable]="false" [ngClass]="item.highlightClass? item.highlightClass(row) : []">
+                      {{item.field(row)  | dynamic: item.pipe : item.pipeArgs ? item.pipeArgs(row) : [] }}
+                    </mat-chip>
+                  </mat-chip-list>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <app-table-button *ngIf="showButtons" [buttons]="tableButtons" [plainButtons]="plainButtons" [data]="row"
+            (onClick)="onTableButtonClick($event)">
+          </app-table-button>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="footer">
+      <td mat-footer-cell *matFooterCellDef [attr.colspan]="columns.length">
+        {{emptyMessage}}
+      </td>
+    </ng-container>
+
+    <tr mat-footer-row *matFooterRowDef="['footer']"
+      [ngStyle]="!dataSource?.displayedData?.length ? {'display': 'table-row'} : {'display': 'none'}"></tr>
+
+    <tr mat-header-row *matHeaderRowDef="['column']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['column'];"></tr>
+  </table>
+
+  <mat-paginator *ngIf="showPaginator" #paginator [pageSizeOptions]="[25, 50, 100, 250]" (page)="onPage($event)"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>

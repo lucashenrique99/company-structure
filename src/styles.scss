@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import './assets/_scss/splash';
+@import './assets/_scss/colors';
+@import './assets/_scss/fonts';
+@import './assets/_scss/icons';
+@import './assets/_scss/scrollbar';
+@import './assets/_scss/messages';
+@import './assets/_scss/chips';
+
+@include mat-core();
+
+$app-primary-palette: $md-primary;
+$app-accent-palette: $md-accent;
+$app-warn-palette: $md-warn;
+
+$app-theme: mat-light-theme((
+  color: (
+    primary: $app-primary-palette,
+    accent: $app-accent-palette,
+    warn: $app-warn-palette,
+  )
+));
+
+$app-typography: mat-typography-config(
+  $font-family: $font-family,
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+@include angular-material-typography($app-typography);
+@include angular-material-theme($app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: $font-family }
+
+.grid-container {
+  padding: 20px !important;
+  border-radius: 16px;
+  background-color: #FFF;
+
+  @media(max-width: 768px) {
+    padding: 16px 12px !important;
+  }
+}
+
+.max-width-container{
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.mat-form-field {
+  width: 100% !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.mat-form-field-suffix{
+  top: 0 !important;
+  margin-left: 8px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

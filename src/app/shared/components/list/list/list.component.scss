@@ -1,0 +1,21 @@
+.page-title{
+    margin-bottom: 1.5em !important;
+}
+
+.new-button-container .mat-raised-button{
+    width: 100% !important;
+}
+
+@media(max-width: 668px){
+    .new-button-container{
+        margin-bottom: 20px !important;
+    }
+
+    .new-button-container .mat-raised-button{
+        max-width: 200px !important;
+    }
+
+    .page-title{
+        margin-bottom: 0.7em !important;
+    }
+}

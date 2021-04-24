@@ -1,0 +1,18 @@
+<div fxLayout="row wrap" class="radiobutton-label">
+    <label>{{radiobuttonLabel}}</label>
+</div>
+<div fxLayout="row wrap" class="options-container">
+    
+    <mat-radio-group *ngIf="isVertical" class="vertical-radio-group" [formControl]="formControl"
+        (change)="onChangeRadiobutton($event.value)">
+        <mat-radio-button class="vertical-radio-button" *ngFor="let option of options" [value]="option.value">
+            {{option.label}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <mat-radio-group *ngIf="!isVertical" class="horizontal-radio-group" [formControl]="formControl"
+        (change)="onChangeRadiobutton($event.value)">
+        <mat-radio-button *ngFor="let option of options" [value]="option.value">
+            {{option.label}}
+        </mat-radio-button>
+    </mat-radio-group>
+</div>
