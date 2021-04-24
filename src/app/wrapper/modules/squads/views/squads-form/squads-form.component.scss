@@ -1,0 +1,15 @@
+@import 'src/assets/_scss/breakpoints';
+
+.form-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 16px;
+  row-gap: 16px;
+  max-width: calc(100% - 32px);
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: $small) {
+    grid-template-columns: 85%;
+  }
+}

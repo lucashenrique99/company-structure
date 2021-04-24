@@ -1,4 +1,5 @@
 <mat-form-field>
+  <mat-label>{{placeholder}}</mat-label>
   <input type="text" [placeholder]="placeholder" aria-label="Autocomplete" matInput [formControl]="formControl"
     [matAutocomplete]="auto" [required]="required" #input (input)="onKeyDownInput(input.value)"
     (focusout)="onInputFocusOut()">

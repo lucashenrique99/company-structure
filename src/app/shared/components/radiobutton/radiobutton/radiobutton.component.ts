@@ -20,7 +20,7 @@ export class RadiobuttonComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChangeRadiobutton(value) {
+  onChangeRadiobutton(value: any) {
     this.onChangeEventEmitter.emit(value);
   }
 

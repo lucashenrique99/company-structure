@@ -16,37 +16,37 @@ export abstract class ApiService {
     this.apiUrl = environment.apiUrl;
   }
 
-  protected abstract getUri(): string;
+  protected abstract getUri(params?: string): string;
 
-  save<req, resp>(value: req): Observable<resp> {
+  save<req, resp>(value: req, urlPathParams?: string): Observable<resp> {
     if ((value as any).id) {
-      return this.update(value, (value as any).id);
+      return this.update(value, (value as any).id, urlPathParams);
     } else {
-      return this.create(value);
+      return this.create(value, urlPathParams);
     }
   }
 
-  create<req, resp>(value: req): Observable<resp> {
-    return this.http.post<resp>(`${this.apiUrl}/${this.getUri()}`, value);
+  create<req, resp>(value: req, urlPathParams?: string): Observable<resp> {
+    return this.http.post<resp>(`${this.apiUrl}/${this.getUri(urlPathParams)}`, value);
   }
 
 
-  update<req, resp>(value: req, id: string | number): Observable<resp> {
-    return this.http.put<resp>(`${this.apiUrl}/${this.getUri()}/${id}`, value);
+  update<req, resp>(value: req, id: string | number, urlPathParams?: string): Observable<resp> {
+    return this.http.put<resp>(`${this.apiUrl}/${this.getUri(urlPathParams)}/${id}`, value);
   }
 
-  delete<T>(id: string | number): Observable<T> {
-    return this.http.delete<T>(`${this.apiUrl}/${this.getUri()}/${id}`);
+  delete<T>(id: string | number, urlPathParams?: string): Observable<T> {
+    return this.http.delete<T>(`${this.apiUrl}/${this.getUri(urlPathParams)}/${id}`);
   }
 
-  findAll<T>(map?: { [param: string]: string | string[] }): Observable<Array<T> | PageApi<T>> {
+  findAll<T>(map?: { [param: string]: string | string[] }, urlPathParams?: string): Observable<Array<T> | PageApi<T>> {
     const params = new HttpParams({ fromObject: map });
-    return this.http.get<Array<T> | PageApi<T>>(`${this.apiUrl}/${this.getUri()}`, { params });
+    return this.http.get<Array<T> | PageApi<T>>(`${this.apiUrl}/${this.getUri(urlPathParams)}`, { params });
   }
 
-  findById<T>(id: string | number, map?: { [param: string]: string | string[] }): Observable<T> {
+  findById<T>(id: string | number, map?: { [param: string]: string | string[] }, urlPathParams?: string): Observable<T> {
     const params = new HttpParams({ fromObject: map });
-    return this.http.get<T>(`${this.apiUrl}/${this.getUri()}/${id}`, { params });
+    return this.http.get<T>(`${this.apiUrl}/${this.getUri(urlPathParams)}/${id}`, { params });
   }
 
 }

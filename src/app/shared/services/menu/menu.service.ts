@@ -13,9 +13,15 @@ export class MenuService {
 
     this.menus = [
       {
+        label: 'Squads',
+        fontSet: 'fas',
+        icon: 'fa-users',
+        url: '/squads/pesquisar',
+      },
+      {
         label: 'Funcionários',
-        fontSet: 'material-icons-outlined',
-        svgIcon: 'user',
+        fontSet: 'fas',
+        icon: 'fa-user',
         url: '/funcionarios/pesquisar',
       },
     ];

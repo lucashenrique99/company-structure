@@ -1,23 +1,23 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { filter, finalize, map } from 'rxjs/operators';
+import { filter, map, finalize } from 'rxjs/operators';
 import { NewButtonListConfig } from 'src/app/shared/components/list/list/list.component';
-import { ButtonClickEvent, TableButtonData } from 'src/app/shared/components/table/table-button/table-button.component';
+import { TableButtonData, ButtonClickEvent } from 'src/app/shared/components/table/table-button/table-button.component';
 import { SortOption } from 'src/app/shared/components/table/table/sort-option';
 import { TableColumn } from 'src/app/shared/components/table/table/table-column';
 import { ErrorHandlerService } from 'src/app/shared/services/error/error-handler.service';
-import { EmployeeDialogComponent } from '../../components/employee-dialog/employee-dialog.component';
-import { EmployeesService } from '../../service/employees.service';
+import { SquadDialogComponent } from '../../components/squad-dialog/squad-dialog.component';
+import { SquadsService } from '../../service/squads.service';
 
 @Component({
-  selector: 'app-employees-list',
-  templateUrl: './employees-list.component.html',
-  styleUrls: ['./employees-list.component.scss']
+  selector: 'app-squads-list',
+  templateUrl: './squads-list.component.html',
+  styleUrls: ['./squads-list.component.scss']
 })
-export class EmployeesListComponent implements OnInit {
+export class SquadsListComponent implements OnInit {
 
   columns: Array<TableColumn> = [];
   data$: BehaviorSubject<any> = new BehaviorSubject([]);
@@ -26,12 +26,12 @@ export class EmployeesListComponent implements OnInit {
   isLoading: boolean = false;
 
   newButtonConfig: NewButtonListConfig = {
-    label: 'Novo Funcionário',
-    url: '/funcionarios/novo'
+    label: 'Nova Squad',
+    url: '/squads/nova'
   }
 
   constructor(
-    private service: EmployeesService,
+    private service: SquadsService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private dialog: MatDialog,
@@ -58,21 +58,21 @@ export class EmployeesListComponent implements OnInit {
       {
         name: 'id',
         header: 'Id',
-        field: (data: any) => data.id,
+        field: (data: SquadProjection) => data.id,
         sort: true,
         sortOption: SortOption.NUMBER
       },
       {
         name: 'name',
         header: 'Nome',
-        field: (data: any) => data.name,
+        field: (data: SquadProjection) => data.name,
         sort: true,
         sortOption: SortOption.TEXT
       },
       {
-        name: 'email',
-        header: 'Email',
-        field: (data: any) => data.email,
+        name: 'projectCode',
+        header: 'Código Jira',
+        field: (data: SquadProjection) => data.projectCode,
         sort: true,
         sortOption: SortOption.TEXT
       },
@@ -85,6 +85,12 @@ export class EmployeesListComponent implements OnInit {
         fontSet: 'fas',
         icon: 'fa-search',
         label: 'Mais Detalhes'
+      },
+      {
+        id: 'members',
+        fontSet: 'fas',
+        icon: 'fa-users',
+        label: 'Membros'
       },
       {
         id: 'edit',
@@ -104,10 +110,10 @@ export class EmployeesListComponent implements OnInit {
   private findAll(): void {
     this.isLoading = true;
     this.service
-      .findAll<EmployeeProjection>()
+      .findAll<SquadProjection>()
       .pipe(finalize(() => this.isLoading = false))
       .subscribe(
-        (data) => this.data$.next(data as EmployeeProjection[]),
+        (data) => this.data$.next(data as SquadProjection[]),
         (err: HttpErrorResponse) => this.errorHandler.httpErrorResponseHandler(err)
       );
 
@@ -116,7 +122,11 @@ export class EmployeesListComponent implements OnInit {
   onTableButtonClick(data: ButtonClickEvent): void {
     switch (data.button) {
       case 'edit':
-        this.router.navigate([`/funcionarios/${data.data.id}`]);
+        this.router.navigate([`/squads/${data.data.id}`]);
+        break;
+
+      case 'members':
+        this.router.navigate([`/squads/${data.data.id}/membros`]);
         break;
 
       case 'details':
@@ -144,7 +154,7 @@ export class EmployeesListComponent implements OnInit {
 
   openDialog(id: string) {
     return this.dialog
-      .open(EmployeeDialogComponent, { data: { id: id } })
+      .open(SquadDialogComponent, { data: { id: id } })
       .afterClosed()
       .subscribe(() => this.router.navigate([], {
         queryParams: {},
@@ -154,8 +164,8 @@ export class EmployeesListComponent implements OnInit {
 
 }
 
-interface EmployeeProjection {
+interface SquadProjection {
   id: number;
   name: string;
-  email: string;
+  projectCode: string;
 }

@@ -1,0 +1,32 @@
+<app-form [title]="title" (onSave)="onSave()" [disableButton]="isInvalidForm() || isLoadingRequest" [form]="form"
+  [showSpinner]="isLoadingRequest">
+  <div form>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome" [formControl]="getField('name')" required>
+          <mat-error *ngIf="hasError('name', 'required')">Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <mat-form-field>
+          <mat-label>Código JIRA</mat-label>
+          <input matInput placeholder="Código JIRA" [formControl]="getField('projectCode')">
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxFlex.gt-xs="calc(100% - 16px)">
+        <mat-form-field>
+          <mat-label>Observações</mat-label>
+          <textarea matInput mat-autosize cdkTextareaAutosize placeholder="Observações"
+            [formControl]="getField('notes')">
+          </textarea>
+        </mat-form-field>
+      </div>
+
+
+    </div>
+  </div>
+
+</app-form>
