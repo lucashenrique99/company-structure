@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/release-trains/release-trains.module').then(e => e.ReleaseTrainsModule)
       },
       {
+        path: 'comunidades',
+        loadChildren: () => import('./modules/communities/communities.module').then(e => e.CommunitiesModule)
+      },
+      {
         path: '**',
         redirectTo: ''
       }

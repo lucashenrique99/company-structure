@@ -13,18 +13,15 @@ import { ReleaseTrainsSquadsFormComponent } from './views/release-trains-squad/r
 import { ReleaseTrainOrgComponent } from './views/release-train-org/release-train-org.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { NgxMaskModule } from 'ngx-mask';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { AutocompleteModule } from 'src/app/shared/components/autocomplete/autocomplete.module';
 import { DialogModule } from 'src/app/shared/components/dialog/dialog.module';
 import { FormModule } from 'src/app/shared/components/form/form.module';
 import { ListModule } from 'src/app/shared/components/list/list.module';
-import { RadiobuttonModule } from 'src/app/shared/components/radiobutton/radiobutton.module';
 import { TableModule } from 'src/app/shared/components/table/table.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes/pipes.module';
 import { ReleaseTrainDialogComponent } from './components/release-train-dialog/release-train-dialog.component';
@@ -53,18 +50,14 @@ import { ReleaseTrainDialogComponent } from './components/release-train-dialog/r
     FlexLayoutModule,
     ListModule,
     TableModule,
-    RadiobuttonModule,
 
     MatFormFieldModule,
     MatInputModule,
-    MatDatepickerModule,
-    MatSelectModule,
     MatIconModule,
     AutocompleteModule,
+    MatSelectModule,
 
     OrganizationChartModule,
-
-    NgxMaskModule,
 
     PipesModule,
   ]

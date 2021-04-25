@@ -13,6 +13,20 @@ export class MenuService {
 
     this.menus = [
       {
+        label: 'Comunidade',
+        fontSet: 'fas',
+        icon: 'fa-people-arrows',
+        url: '/comunidades/pesquisar',
+        children: [
+          {
+            label: 'Estrutura',
+            fontSet: 'fas',
+            icon: 'fa-sitemap',
+            url: '/comunidades/estrutura'
+          }
+        ]
+      },
+      {
         label: 'RTs',
         fontSet: 'fas',
         icon: 'fa-users',
@@ -43,7 +57,7 @@ export class MenuService {
       {
         label: 'Funcionários',
         fontSet: 'fas',
-        icon: 'fa-user',
+        icon: 'fa-id-card',
         url: '/funcionarios/pesquisar',
       },
     ];

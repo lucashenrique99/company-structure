@@ -64,10 +64,11 @@ export class EmployeesFormComponent extends AbstractForm<EmployeeRequest, Employ
 
   transformFormToData() : EmployeeRequest {
     const formData = this.form.getRawValue() as EmployeeRequest;
+    const birthDate = moment(formData.birthDate);
 
     return {
       ...formData,
-      birthDate: moment(formData.birthDate).format('YYYY-MM-DD')
+      birthDate: birthDate.isValid() ? birthDate.format('YYYY-MM-DD') : null
     }
   }
 
@@ -97,7 +98,7 @@ interface EmployeeRequest {
   functional?: string;
   corporatePhone?: string;
   racf?: string;
-  birthDate?: string;
+  birthDate?: string | null;
   techStack?: string;
   phone?: string;
 }

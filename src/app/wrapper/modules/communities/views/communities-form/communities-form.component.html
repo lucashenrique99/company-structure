@@ -1,0 +1,23 @@
+<app-form [title]="title" (onSave)="onSave()" [disableButton]="isInvalidForm() || isLoadingRequest" [form]="form"
+  [showSpinner]="isLoadingRequest">
+  <div form>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Nome" [formControl]="getField('name')" required>
+          <mat-error *ngIf="hasError('name', 'required')">Nome é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <app-autocomplete [placeholder]="'Líder'" [errorMessage]="'Funcionário inválido'" [options]="leaderOptions"
+          [control]="getField('leader')">
+        </app-autocomplete>
+      </div>
+
+    </div>
+  </div>
+
+</app-form>

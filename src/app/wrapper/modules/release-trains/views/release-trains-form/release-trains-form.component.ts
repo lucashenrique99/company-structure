@@ -5,6 +5,7 @@ import { AutocompleteData } from 'src/app/shared/components/autocomplete/autocom
 import { AbstractForm, PageType } from 'src/app/shared/components/form/form/model/abstract-form';
 import { ErrorHandlerService } from 'src/app/shared/services/error/error-handler.service';
 import { SnackbarUtilService } from 'src/app/shared/services/snackbar/snackbar-util.service';
+import { CommunitiesService } from '../../../communities/service/communities.service';
 import { EmployeesService } from '../../../employees/service/employees.service';
 import { ReleaseTrainsService } from '../../service/release-trains.service';
 
@@ -18,6 +19,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
   _showResponsible = true;
 
   employeeOptions: AutocompleteData[] = [];
+  communitiesOptions: AutocompleteData[] = [];
 
   constructor(
     protected fb: FormBuilder,
@@ -26,7 +28,8 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
     protected router: Router,
     protected activatedRoute: ActivatedRoute,
     protected errorHandler: ErrorHandlerService,
-    private employeesService: EmployeesService
+    private employeesService: EmployeesService,
+    private communitiesService: CommunitiesService
   ) {
     super(
       fb,
@@ -42,6 +45,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
   ngOnInit() {
     super.ngOnInit();
     this.getEmployees();
+    this.getCommunities();
   }
 
   formConfigurer(): void {
@@ -49,6 +53,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
       id: [null],
       name: [null, Validators.required],
       responsible: [null, Validators.required],
+      community: [null, Validators.required],
       notes: [null]
     });
 
@@ -58,18 +63,23 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
     this.form?.patchValue({
       id: value.id,
       name: value.name,
-      notes: value.notes
+      notes: value.notes,
+      community: {
+        label: value.community.name,
+        value: value.community.id
+      }
     });
 
     this._showResponsible = false;
     this.form.get('responsible')?.disable();
   }
 
-  transformFormToData() : ReleaseTrainRequest {
+  transformFormToData(): ReleaseTrainRequest {
     const formData = this.form.getRawValue();
     return {
       ...formData,
-      responsible: formData.responsible?.value || null
+      responsible: formData.responsible?.value || null,
+      community: formData.community.value
     }
   }
 
@@ -94,12 +104,20 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
         err => this.errorHandler.httpErrorResponseHandler(err))
   }
 
+  private getCommunities() {
+    this.communitiesService.findAll<{ id: number, name: string }>()
+      .subscribe(
+        communities => this.communitiesOptions = (communities as { id: number, name: string }[]).map(e => ({ label: e.name, value: e.id })),
+        err => this.errorHandler.httpErrorResponseHandler(err))
+  }
+
 }
 
 interface ReleaseTrainRequest {
   id?: number;
   name: string;
   responsible?: number;
+  community: number;
   notes?: string;
 
 }
@@ -108,4 +126,8 @@ interface ReleaseTrainResponse {
   id?: number;
   name: string;
   notes?: string;
+  community: {
+    id: number;
+    name: string;
+  }
 }
