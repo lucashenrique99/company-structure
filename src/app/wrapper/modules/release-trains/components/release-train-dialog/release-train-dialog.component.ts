@@ -52,9 +52,14 @@ export class ReleaseTrainDialogComponent implements OnInit {
         width: 50,
       },
       {
+        label: 'Gerente / Coordenador (a)',
+        field: (data: ReleaseTrainResponse) => data.manager || '-',
+        width: 50,
+      },
+      {
         label: 'Observações',
         field: (data: ReleaseTrainResponse) => data.notes,
-        width: 100,
+        width: 50,
       },
 
     ];
@@ -116,6 +121,7 @@ interface ReleaseTrainResponse {
   name: string;
   isActive?: boolean;
   notes?: string;
+  manager?: string;
   leader?: {
     id: number;
     employee: {

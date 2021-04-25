@@ -2,7 +2,7 @@
   [showSpinner]="isLoadingRequest">
   <div form>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="100" [fxFlex.gt-xs]="_showResponsible ? 'calc(33% - 16px)' : 'calc(50% - 16px)'">
+      <div fxFlex="100" [fxFlex.gt-xs]="_showResponsible ? 'calc(50% - 16px)' : 'calc(33% - 16px)'">
         <mat-form-field>
           <mat-label>Nome</mat-label>
           <input matInput placeholder="Nome" [formControl]="getField('name')" required>
@@ -10,14 +10,20 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <div fxFlex="100" [fxFlex.gt-xs]="_showResponsible ? 'calc(50% - 16px)' : 'calc(33% - 16px)'">
+        <mat-form-field>
+          <mat-label>Gerente / Coordenador(a)</mat-label>
+          <input matInput placeholder="Gerente / Coordenador(a)" [formControl]="getField('manager')">
+        </mat-form-field>
+      </div>
 
-      <div *ngIf="_showResponsible" fxFlex="100" fxFlex.gt-xs="calc(33% - 16px)">
+      <div *ngIf="_showResponsible" fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
         <app-autocomplete [placeholder]="'Responsável'" [errorMessage]="'Funcionário inválido'"
           [options]="employeeOptions" [control]="getField('responsible')">
         </app-autocomplete>
       </div>
 
-      <div fxFlex="100" [fxFlex.gt-xs]="_showResponsible ? 'calc(33% - 16px)' : 'calc(50% - 16px)'">
+      <div fxFlex="100" [fxFlex.gt-xs]="_showResponsible ? 'calc(50% - 16px)' : 'calc(33% - 16px)'">
         <app-autocomplete [placeholder]="'Comunidade'" [errorMessage]="'Comunidade inválida'"
           [options]="communitiesOptions" [control]="getField('community')">
         </app-autocomplete>

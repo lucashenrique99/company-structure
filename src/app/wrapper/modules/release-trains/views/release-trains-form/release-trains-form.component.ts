@@ -52,6 +52,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
     this.form = this.fb.group({
       id: [null],
       name: [null, Validators.required],
+      manager: [null],
       responsible: [null, Validators.required],
       community: [null, Validators.required],
       notes: [null]
@@ -63,6 +64,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
     this.form?.patchValue({
       id: value.id,
       name: value.name,
+      manager: value.manager,
       notes: value.notes,
       community: {
         label: value.community.name,
@@ -116,6 +118,7 @@ export class ReleaseTrainsFormComponent extends AbstractForm<ReleaseTrainRequest
 interface ReleaseTrainRequest {
   id?: number;
   name: string;
+  manager: string;
   responsible?: number;
   community: number;
   notes?: string;
@@ -125,6 +128,7 @@ interface ReleaseTrainRequest {
 interface ReleaseTrainResponse {
   id?: number;
   name: string;
+  manager: string;
   notes?: string;
   community: {
     id: number;
