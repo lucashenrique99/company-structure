@@ -57,6 +57,8 @@
     .mat-list-item {
       color: #424242;
       padding: 8px 0;
+      min-height: 48px;
+      height: auto;
 
       &:hover {
         color: mat-color($md-primary, 500);
