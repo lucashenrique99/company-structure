@@ -82,7 +82,7 @@ export class EmployeeDialogComponent implements OnInit {
         field: (data: EmployeeResponse) => data.birthDate,
         width: 50,
         pipe: DynamicPipeOptions.DATE,
-        pipeArgs: (data: EmployeeResponse) => ['medium']
+        pipeArgs: (data: EmployeeResponse) => ['shortDate']
       },
       {
         label: 'Cargo',

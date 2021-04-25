@@ -16,13 +16,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormModule } from 'src/app/shared/components/form/form.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { BirthdaysMonthListComponent } from './views/birthdays-month-list/birthdays-month-list.component';
 
 
 @NgModule({
   declarations: [
     EmployeesListComponent,
     EmployeesFormComponent,
-    EmployeeDialogComponent
+    EmployeeDialogComponent,
+    BirthdaysMonthListComponent
   ],
   imports: [
     CommonModule,

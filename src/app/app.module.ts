@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,9 @@ import { FormFieldImpl } from './shared/config/material/form-field-impl-config';
 import { TooltipImpl } from './shared/config/material/tooltip-impl';
 import { PaginatorIntl } from './shared/config/material/paginator-intl';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useClass: DialogImpl },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     { provide: MaskPipe, useClass: MaskPipe },
-    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useClass: TooltipImpl }
+    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useClass: TooltipImpl },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

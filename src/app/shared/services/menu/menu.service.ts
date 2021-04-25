@@ -73,6 +73,14 @@ export class MenuService {
         fontSet: 'fas',
         icon: 'fa-id-card',
         url: '/funcionarios/pesquisar',
+        children: [
+          {
+            label: 'Aniversariantes do mês',
+            fontSet: 'fas',
+            icon: 'fa-calendar',
+            url: 'funcionarios/aniversariantes-do-mes'
+          }
+        ]
       },
     ];
   }
