@@ -13,6 +13,20 @@ export class MenuService {
 
     this.menus = [
       {
+        label: 'Feed',
+        fontSet: 'fas',
+        icon: 'fa-comment',
+        url: '/comunicados/feed',
+        children: [
+          {
+            label: 'Novo Post',
+            fontSet: 'fas',
+            icon: 'fa-plus',
+            url: '/comunicados/novo'
+          }
+        ]
+      },
+      {
         label: 'Comunidade',
         fontSet: 'fas',
         icon: 'fa-people-arrows',

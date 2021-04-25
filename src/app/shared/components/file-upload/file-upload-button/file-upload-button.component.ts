@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { UploadsService } from 'src/app/shared/services/uploads/uploads.service';
 import { SnackbarUtilService } from 'src/app/shared/services/snackbar/snackbar-util.service';
 import { ErrorHandlerService } from 'src/app/shared/services/error/error-handler.service';
+import { UploadsService } from 'src/app/shared/services/api/uploads/uploads.service';
 
 @Component({
   selector: 'app-file-upload-button',

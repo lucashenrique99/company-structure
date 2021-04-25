@@ -1,0 +1,21 @@
+.post-container {
+    margin: 8px 0;
+
+    .mat-card-header {
+        margin-bottom: 16px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .mat-card-content{
+        padding: 8px;
+
+        .post-content {
+            max-width: 100%;
+        }
+    }
+
+    .mat-card-actions {
+        margin-top: 16px;
+        border-top: 1px solid #ccc;
+    }
+}

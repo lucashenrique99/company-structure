@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/communities/communities.module').then(e => e.CommunitiesModule)
       },
       {
+        path: 'comunicados',
+        loadChildren: () => import('./modules/communication/communication.module').then(e => e.CommunicationModule)
+      },
+      {
         path: '**',
         redirectTo: ''
       }

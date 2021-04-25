@@ -1,0 +1,21 @@
+<app-form [title]="title" (onSave)="onSave()" [disableButton]="isInvalidForm() || isLoadingRequest" [form]="form"
+  [showSpinner]="isLoadingRequest">
+  <div form>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="100">
+        <mat-form-field>
+          <mat-label>Título</mat-label>
+          <input matInput placeholder="Título" [formControl]="getField('title')" required>
+          <mat-error *ngIf="hasError('title', 'required')">Título é obrigatório
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100">
+        <app-editor [control]="getField('content')"></app-editor>
+      </div>
+
+    </div>
+  </div>
+
+</app-form>
