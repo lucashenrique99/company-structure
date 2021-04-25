@@ -1,0 +1,5 @@
+<app-list [title]="'Squads da RT'" [showNewButton]="true" [newButton]="newButtonConfig">
+  <app-table [title]="'Squads da RT'" [data]="data$" [columns]="columns" [showButtons]="true" [buttons]="buttons"
+    (onTableButtonClick)="onTableButtonClick($event)" [loading]="isLoading">
+  </app-table>
+</app-list>

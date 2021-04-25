@@ -5,6 +5,7 @@ import { MaxLengthPipe } from './pipes/max-length.pipe';
 import { DynamicPipe } from './pipes/dynamic.pipe';
 import { ActivePipe } from './pipes/active.pipe';
 import { SquadRolePipe } from './pipes/squad-role.pipe';
+import { ReleaseTrainRolePipe } from './pipes/release-train-role.pipe';
 
 
 
@@ -15,6 +16,7 @@ import { SquadRolePipe } from './pipes/squad-role.pipe';
     DynamicPipe,
     ActivePipe,
     SquadRolePipe,
+    ReleaseTrainRolePipe,
   ],
   imports: [
     CommonModule
@@ -25,6 +27,7 @@ import { SquadRolePipe } from './pipes/squad-role.pipe';
     DynamicPipe,
     ActivePipe,
     SquadRolePipe,
+    ReleaseTrainRolePipe,
   ],
   providers: [
     StatusPipe,
@@ -33,6 +36,7 @@ import { SquadRolePipe } from './pipes/squad-role.pipe';
     ActivePipe,
     PercentPipe,
     SquadRolePipe,
+    ReleaseTrainRolePipe,
   ],
 })
 export class PipesModule { }

@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/squads/squads.module').then(e => e.SquadsModule)
       },
       {
+        path: 'rts',
+        loadChildren: () => import('./modules/release-trains/release-trains.module').then(e => e.ReleaseTrainsModule)
+      },
+      {
         path: '**',
         redirectTo: ''
       }

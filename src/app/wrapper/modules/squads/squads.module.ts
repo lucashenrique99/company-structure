@@ -23,7 +23,7 @@ import { SquadMemberDialogComponent } from './components/squad-member-dialog/squ
 import { MatSelectModule } from '@angular/material/select';
 import { RadiobuttonModule } from 'src/app/shared/components/radiobutton/radiobutton.module';
 import { AutocompleteModule } from 'src/app/shared/components/autocomplete/autocomplete.module';
-import { SquadOrgViewComponent } from './pages/squad-org-view/squad-org-view.component';
+import { SquadOrgViewComponent } from './views/squad-org-view/squad-org-view.component';
 import { OrganizationChartModule } from 'primeng/organizationchart';
 import { MatIconModule } from '@angular/material/icon';
 

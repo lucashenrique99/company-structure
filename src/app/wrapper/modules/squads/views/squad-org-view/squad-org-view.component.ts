@@ -62,7 +62,7 @@ export class SquadOrgViewComponent implements OnInit, OnDestroy {
   private listenSearch() {
     this.searchSubscription$ = this.searchControl.valueChanges
       .pipe(
-        filter(v => v != null && v !== undefined && v.value !== null),
+        filter(v => v != null && v !== undefined && v.value !== null && v.value !== undefined),
         debounceTime(100))
       .subscribe(selected => this.findSquadById(selected.value))
   }

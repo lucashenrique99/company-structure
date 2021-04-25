@@ -1,0 +1,29 @@
+<app-form [title]="title" (onSave)="onSave()" [disableButton]="isInvalidForm() || isLoadingRequest" [form]="form"
+  [showSpinner]="isLoadingRequest">
+  <div form>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <app-autocomplete [placeholder]="'Squad'" [errorMessage]="'Squad inválida'" [options]="squadsOptions"
+          [control]="getField('squad')">
+        </app-autocomplete>
+      </div>
+      <div fxFlex="100" fxFlex.gt-xs="calc(50% - 16px)">
+        <app-autocomplete [placeholder]="'Responsável'" [errorMessage]="'Funcionário inválido'"
+          [options]="responsibleOptions" [control]="getField('responsible')">
+        </app-autocomplete>
+      </div>
+
+      <div fxFlex="100">
+        <mat-form-field>
+          <mat-label>Observações</mat-label>
+          <textarea matInput mat-autosize cdkTextareaAutosize placeholder="Observações"
+            [formControl]="getField('notes')">
+          </textarea>
+        </mat-form-field>
+      </div>
+
+
+    </div>
+  </div>
+
+</app-form>

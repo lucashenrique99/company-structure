@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SquadOrgViewComponent } from './pages/squad-org-view/squad-org-view.component';
+import { SquadOrgViewComponent } from './views/squad-org-view/squad-org-view.component';
 import { SquadsFormComponent } from './views/squads-form/squads-form.component';
 import { SquadsListComponent } from './views/squads-list/squads-list.component';
 import { SquadsMembersFormComponent } from './views/squads-members-form/squads-members-form.component';

@@ -1,0 +1,9 @@
+<app-dialog [title]="dialogTitle" [data]="releaseTrain" [rows]="rows" [loading]="isLoading">
+
+  <div content [fxFlex]="100">
+    <app-table [data]="squads$" [columns]="squadsColumns" [expandedTitle]="true" [title]="'Squads'" [flat]="true"
+      [filter]="false" [paginator]="false">
+    </app-table>
+  </div>
+
+</app-dialog>

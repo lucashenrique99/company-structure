@@ -19,6 +19,7 @@ export class GlobalErrorHandler implements ErrorHandler {
             message = error;
         }
         console.log(message)
+        console.log(error)
     }
     
     getStack(error: Error): string {

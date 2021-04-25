@@ -5,6 +5,7 @@ import { MaskPipe } from 'ngx-mask';
 import { ActivePipe } from './active.pipe';
 import { MaxLengthPipe } from './max-length.pipe';
 import { SquadRolePipe } from './squad-role.pipe';
+import { ReleaseTrainRolePipe } from './release-train-role.pipe';
 
 @Pipe({
   name: 'dynamic'
@@ -32,6 +33,8 @@ export class DynamicPipe implements PipeTransform {
         return this.injector.get(ActivePipe).transform(value);
       case DynamicPipeOptions.SQUAD_ROLE:
         return this.injector.get(SquadRolePipe).transform(value);
+      case DynamicPipeOptions.RELEASE_TRAIN_ROLE:
+        return this.injector.get(ReleaseTrainRolePipe).transform(value);
       case DynamicPipeOptions.MAX_LENGHT:
         return this.injector.get(MaxLengthPipe).transform(value, args[0]);
       default:
@@ -50,4 +53,5 @@ export enum DynamicPipeOptions {
   ACTIVE = 'ACTIVE',
   MAX_LENGHT = 'MAX_LENGHT',
   SQUAD_ROLE = 'SQUAD_ROLE',
+  RELEASE_TRAIN_ROLE = 'RT_ROLE',
 }

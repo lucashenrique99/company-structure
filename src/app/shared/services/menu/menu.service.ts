@@ -13,13 +13,29 @@ export class MenuService {
 
     this.menus = [
       {
-        label: 'Squads',
+        label: 'RTs',
         fontSet: 'fas',
         icon: 'fa-users',
+        url: '/rts/pesquisar',
+        children: [
+          {
+            label: 'Estrutura',
+            fontSet: 'fas',
+            icon: 'fa-sitemap',
+            url: '/rts/estrutura'
+          }
+        ]
+      },
+      {
+        label: 'Squads',
+        fontSet: 'fas',
+        icon: 'fa-user-friends',
         url: '/squads/pesquisar',
         children: [
           {
             label: 'Estrutura',
+            fontSet: 'fas',
+            icon: 'fa-sitemap',
             url: '/squads/estrutura'
           }
         ]

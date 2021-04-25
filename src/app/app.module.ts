@@ -16,6 +16,8 @@ import { GlobalErrorHandler } from './shared/config/errors/global-error-handler'
 import { DialogImpl } from './shared/config/material/dialog-impl';
 import { FormFieldImpl } from './shared/config/material/form-field-impl-config';
 import { TooltipImpl } from './shared/config/material/tooltip-impl';
+import { PaginatorIntl } from './shared/config/material/paginator-intl';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { TooltipImpl } from './shared/config/material/tooltip-impl';
   providers: [
     DatePipe,
     CurrencyPipe,
-    // { provide: MatPaginatorIntl, useClass: PaginatorIntl },
+    { provide: MatPaginatorIntl, useClass: PaginatorIntl },
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useClass: FormFieldImpl },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useClass: DialogImpl },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
