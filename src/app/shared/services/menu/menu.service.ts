@@ -17,6 +17,12 @@ export class MenuService {
         fontSet: 'fas',
         icon: 'fa-users',
         url: '/squads/pesquisar',
+        children: [
+          {
+            label: 'Estrutura',
+            url: '/squads/estrutura'
+          }
+        ]
       },
       {
         label: 'Funcionários',

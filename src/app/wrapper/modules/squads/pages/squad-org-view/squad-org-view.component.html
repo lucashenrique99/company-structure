@@ -1,0 +1,40 @@
+<div class="grid-container">
+  <div fxLayout="row wrap">
+    <div fxFlex fxLayout="column">
+      <h2 class="mat-headline page-title">Squads</h2>
+    </div>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="100" fxLayout="column">
+      <div>
+        <app-autocomplete [placeholder]="'Squad'" [options]="squadsOptions" [control]="searchControl">
+        </app-autocomplete>
+      </div>
+      <div *ngIf="organization?.length" class="organization-container">
+        <h3>Estrutura da Squad</h3>
+        <p-organizationChart [value]="organization" [selectionMode]="'single'" (onNodeSelect)="onNodeSelect($event)"
+          styleClass="squad-organization">
+
+          <ng-template let-node pTemplate="triad">
+            <mat-icon class="external-icon" fontSet="material-icons-outlined">
+              {{ node.data.isExternal ? 'remove_circle_outline' : 'check' }}</mat-icon>
+
+            <span class="job-role-container">{{ node.data.role | squadRole }}</span>
+
+            {{node.label}}
+          </ng-template>
+
+          <ng-template let-node pTemplate="nonTriad">
+            <mat-icon class="external-icon" fontSet="material-icons-outlined">
+              {{ node.data.isExternal ? 'remove_circle_outline' : 'check' }}</mat-icon>
+              
+            <span class="job-role-container">{{ node.data.role | squadRole }}</span>
+
+            {{node.label}}
+          </ng-template>
+
+        </p-organizationChart>
+      </div>
+    </div>
+  </div>
+</div>

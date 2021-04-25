@@ -4,7 +4,7 @@
             <h2 class="mat-headline page-title">{{title}}</h2>
         </div>
         <div *ngIf="showNewButton && !disabledNewButton()" fxFlex="250px" class="new-button-container" fxFlex.xs="100">
-            <a mat-raised-button [routerLink]="newButton.url" color="primary">
+            <a mat-raised-button [routerLink]="newButton.url" color="accent">
                 <mat-icon>add</mat-icon>
                 {{newButton.label}}
             </a>

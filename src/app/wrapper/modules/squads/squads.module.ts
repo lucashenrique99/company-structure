@@ -23,6 +23,9 @@ import { SquadMemberDialogComponent } from './components/squad-member-dialog/squ
 import { MatSelectModule } from '@angular/material/select';
 import { RadiobuttonModule } from 'src/app/shared/components/radiobutton/radiobutton.module';
 import { AutocompleteModule } from 'src/app/shared/components/autocomplete/autocomplete.module';
+import { SquadOrgViewComponent } from './pages/squad-org-view/squad-org-view.component';
+import { OrganizationChartModule } from 'primeng/organizationchart';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -33,12 +36,13 @@ import { AutocompleteModule } from 'src/app/shared/components/autocomplete/autoc
     SquadsMembersFormComponent,
     SquadsComponent,
     SquadDialogComponent,
-    SquadMemberDialogComponent
+    SquadMemberDialogComponent,
+    SquadOrgViewComponent
   ],
   imports: [
     CommonModule,
     SquadsRoutingModule,
-    
+
     ReactiveFormsModule,
     DialogModule,
     FormModule,
@@ -51,7 +55,10 @@ import { AutocompleteModule } from 'src/app/shared/components/autocomplete/autoc
     MatInputModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatIconModule,
     AutocompleteModule,
+
+    OrganizationChartModule,
 
     NgxMaskModule,
 
